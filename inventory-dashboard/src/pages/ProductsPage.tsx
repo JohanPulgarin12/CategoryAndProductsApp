@@ -206,6 +206,8 @@ const filtered = useMemo(() => {
                     type={type}
                     value={form[field] as string | number}
                     onChange={e => handleChange(field, type === 'number' ? +e.target.value : e.target.value)}
+                    onFocus={e => { if (type === 'number' && +e.target.value === 0) e.target.value = '' }}
+                    onBlur={e => { if (type === 'number' && e.target.value === '') handleChange(field, 0) }}
                     className={`w-full bg-ink-700 border rounded-xl px-4 py-2.5 text-white font-sans text-sm focus:outline-none transition-colors ${
                       (formErrors as Record<string, string>)[field] ? 'border-red-500' : 'border-ink-600 focus:border-acid-400'
                     }`}
