@@ -280,7 +280,7 @@ const handleDelete = async (id: number) => {
             </div>
             <div className="flex gap-3">
               <button onClick={() => setDeleteId(null)} className="flex-1 bg-ink-700 text-slate-300 font-sans text-sm py-2.5 rounded-xl hover:bg-ink-600 transition-colors">Cancelar</button>
-<button onClick={() => deleteId && handleDelete(deleteId)} className="flex-1 bg-red-500 hover:bg-red-600 text-white font-sans text-sm font-semibold py-2.5 rounded-xl transition-colors">Desactivar</button>
+              <button onClick={() => deleteId && handleDelete(deleteId)} className="flex-1 bg-red-500 hover:bg-red-600 text-white font-sans text-sm font-semibold py-2.5 rounded-xl transition-colors">Desactivar</button>
             </div>
           </div>
         </div>
