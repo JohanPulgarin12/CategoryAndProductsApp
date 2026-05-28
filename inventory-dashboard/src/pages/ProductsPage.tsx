@@ -77,10 +77,14 @@ const filtered = useMemo(() => {
     finally { setSaving(false) }
   }
 
-  const handleDelete = async (id: number) => {
+const handleDelete = async (id: number) => {
+  try {
     await remove(id)
     setDeleteId(null)
+  } catch {
+    console.error('Error al eliminar')
   }
+}
 
   const fmt = (n: number) =>
     new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(n)
@@ -138,8 +142,12 @@ const filtered = useMemo(() => {
                     </span>
                   </td>
                   <td className="px-5 py-4">
-                    <span className="bg-ink-700 text-slate-300 text-xs font-sans px-2.5 py-1 rounded-lg">
-                      {p.status?.name ?? `Estado ${p.statusId}`}
+                    <span className={`text-xs font-sans px-2.5 py-1 rounded-lg ${
+                      !p.isActive
+                        ? 'bg-red-500/10 text-red-400'
+                        : 'bg-ink-700 text-slate-300'
+                    }`}>
+                      {!p.isActive ? 'Inactivo' : (p.status?.name ?? `Estado ${p.statusId}`)}
                     </span>
                   </td>
                   <td className="px-5 py-4">
@@ -266,13 +274,13 @@ const filtered = useMemo(() => {
                 <Trash2 size={18} className="text-red-400" />
               </div>
               <div>
-                <h3 className="text-white font-sans font-semibold text-base">Eliminar producto</h3>
+                <h3 className="text-white font-sans font-semibold text-base">Desactivar producto</h3>
                 <p className="text-slate-500 text-sm">Esta acción no se puede deshacer</p>
               </div>
             </div>
             <div className="flex gap-3">
               <button onClick={() => setDeleteId(null)} className="flex-1 bg-ink-700 text-slate-300 font-sans text-sm py-2.5 rounded-xl hover:bg-ink-600 transition-colors">Cancelar</button>
-              <button onClick={() => handleDelete(deleteId)} className="flex-1 bg-red-500 hover:bg-red-600 text-white font-sans text-sm font-semibold py-2.5 rounded-xl transition-colors">Eliminar</button>
+<button onClick={() => deleteId && handleDelete(deleteId)} className="flex-1 bg-red-500 hover:bg-red-600 text-white font-sans text-sm font-semibold py-2.5 rounded-xl transition-colors">Desactivar</button>
             </div>
           </div>
         </div>
