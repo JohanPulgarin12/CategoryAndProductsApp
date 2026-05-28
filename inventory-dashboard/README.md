@@ -1,3 +1,10 @@
+## Usuario y contraseña para el login
+
+```
+Usuario: vwa-us
+Contraseña: Bdh%&2AeJ=9!JFBS202029se86e
+```
+
 # Inventory OS — Dashboard Administrativo
 
 Stack: React 18 + Vite + TypeScript + TailwindCSS + Recharts  
